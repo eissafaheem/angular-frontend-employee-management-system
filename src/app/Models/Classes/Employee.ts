@@ -1,23 +1,23 @@
 import { Department } from "../Enums/EnumDepartment";
-import { EmployeeDesignation } from "../Enums/EnumEmployeeDesignation";
+import { Designation } from "../Enums/EnumDesignation";
 import { Gender } from "../Enums/EnumGender";
 
 export class Employee {
-    id: number;
+    id: string;
     name: string;
     email: string;
-    gender: Gender;
     phone: string;
+    gender: Gender;
     salary: number
-    designation: EmployeeDesignation;
+    designation: Designation;
     department: Department;
 
-    constructor(id: number, name: string, email: string, gender: Gender, phone: string, salary:number, designation: EmployeeDesignation, department: Department) {
+    constructor(id: string, name: string, email: string, gender: Gender, phone: string, salary:number, designation: Designation, department: Department) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.gender = gender;
         this.phone = phone;
+        this.gender = gender;
         this.salary = salary;
         this.designation = designation;
         this.department = department;

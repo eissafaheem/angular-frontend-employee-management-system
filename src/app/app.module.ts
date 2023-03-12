@@ -9,6 +9,7 @@ import { AddEmployeeComponent } from './Components/add-employee/add-employee.com
 import { ProfileComponent } from './Components/profile/profile.component';
 import { RouterModule } from '@angular/router';
 import { AboutComponent } from './Components/about/about.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AboutComponent } from './Components/about/about.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

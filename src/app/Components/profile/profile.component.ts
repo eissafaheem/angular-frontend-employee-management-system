@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Employee } from 'src/app/Models/Classes/Employee';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  
+  emp:any;
+  constructor(private route: ActivatedRoute) {
+    let empString = this.route.snapshot.paramMap.get('emp');
 
-  constructor() { }
-
-  ngOnInit(): void {
+    if(empString!=null){
+      this.emp = JSON.parse(empString);
+    }
+  }
+  ngOnInit() {
   }
 
 }
