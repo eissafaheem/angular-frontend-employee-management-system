@@ -1,1 +1,23 @@
-@import "~bootstrap/scss/bootstrap";
+body{
+    background-color: rgba(128, 128, 128, 0.116);
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.all_container{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    margin-top: 2rem;
+    h1{
+        margin-bottom: 2rem;
+    }
+}
+
+.container{
+    overflow-y: scroll;
+    height: 30rem;
+}

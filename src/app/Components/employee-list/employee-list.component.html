@@ -1,1 +1,29 @@
-<p>employee-list works!</p>
+<div class="all_container">
+  <h1>All Employees</h1>
+  <div class="container">
+    <table class="table table-warning table-striped ">
+      <thead>
+        <tr>
+          <th scope="col" >Id</th>
+          <th scope="col">Name</th>
+          <!-- <th scope="col">Email</th> -->
+          <th scope="col" class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let emp of employees">
+        <tr>
+          <th scope="row">ZL101</th>
+          <td>Eissa Faheem</td>
+          <!-- <td>eissa.faheem@ziroh.com<s/td> -->
+          <td class="text-center" >
+            <button class="btn btn-primary mr-2">View</button>
+            <button class="btn btn-danger">Delete</button>
+          </td>
+          <!-- <td class="text-center">
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
