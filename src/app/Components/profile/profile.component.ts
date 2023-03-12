@@ -10,14 +10,19 @@ import { Employee } from 'src/app/Models/Classes/Employee';
 export class ProfileComponent implements OnInit {
 
   emp: any;
+  editProfile=false;
+
   constructor(private route: ActivatedRoute) {
     let empString = this.route.snapshot.paramMap.get('emp');
-
     if (empString != null) {
       this.emp = JSON.parse(empString);
     }
   }
   ngOnInit() {
+  }
+
+  editProfilehandler(){
+    this.editProfile=!this.editProfile
   }
 
 }

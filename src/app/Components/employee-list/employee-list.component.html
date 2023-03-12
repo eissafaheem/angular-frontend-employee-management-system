@@ -17,7 +17,7 @@
           <td>{{emp.email}}</td>
           <td class="text-center">
             <a class="btn btn-primary mr-3" [routerLink]="['/profile', getStringifiedEmp(emp) ]">View</a>
-            <a class="btn btn-danger">Delete</a>
+            <a class="btn btn-danger" (click)="deleteEmployeeHandler(emp.id)">Delete</a>
           </td>
           <!-- <td class="text-center">
           </td> -->

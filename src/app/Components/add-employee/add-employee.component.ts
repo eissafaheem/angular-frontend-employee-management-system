@@ -38,13 +38,12 @@ export class AddEmployeeComponent {
   onSubmit() {
     const formValue = this.myForm.value;
     let newEmployee = new Employee(formValue.id, formValue.name, formValue.email, formValue.gender, formValue.phone, formValue.salary, formValue.designation, formValue.department)
-    console.log(newEmployee);
-
+    this.toasterService.info("Info", "Adding employee please wait...");
     let addEmployeeResult = this.employeeManagementService.addEmployee(newEmployee);
     addEmployeeResult.subscribe((res: any) => {
-      this.toasterService.success("Eissa", "Faheem");
+      this.toasterService.success("Success", "Employee added successfully!");
     }, (err: any) => {
-      this.toasterService.error("Eissa", "Faheem");
+      this.toasterService.error("Failure", "Adding employee failed !");
     })
   }
 }

@@ -13,7 +13,6 @@ export class RestCalls {
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            console.log("Eiisa " + xhr.responseText);
 
             resolve(JSON.parse(xhr.responseText));
           } else {
@@ -26,4 +25,43 @@ export class RestCalls {
     xhr.send(JSON.stringify(data));
     return promise;
   }
+
+  GET(url: string): Promise<any> {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    const promise = new Promise((resolve, reject) => {
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {            
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            reject(xhr.statusText);
+          }
+        }
+      };
+      xhr.onerror = () => reject(xhr.statusText);
+    });
+    xhr.send();
+    return promise;
+  }
+  
+  DELETE(url: string, empId: String): Promise<any> {
+    const xhr = new XMLHttpRequest();
+    xhr.open('DELETE', url, true);
+    const promise = new Promise((resolve, reject) => {
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {            
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            reject(xhr.statusText);
+          }
+        }
+      };
+      xhr.onerror = () => reject(xhr.statusText);
+    });
+    xhr.send();
+    return promise;
+  }
+  
 }

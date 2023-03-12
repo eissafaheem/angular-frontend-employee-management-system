@@ -13,4 +13,14 @@ export class EmployeeManagementService {
   public addEmployee(newEmployee: Employee): Observable<AddEmployeeResult> {
     return from(this.employeeBackendClient.addEmployee(newEmployee));
   }
+
+  public getAllEmployees(): Observable<AddEmployeeResult> {
+    return from(this.employeeBackendClient.getAllEmployees());
+  }
+
+  public deleteEmployeeById(empId: string): Observable<AddEmployeeResult> {
+    return from(this.employeeBackendClient.deleteEmployeeById(empId));
+  }
+
+
 }

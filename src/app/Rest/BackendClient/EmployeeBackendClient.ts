@@ -10,6 +10,7 @@ export class EmployeeBackendClient {
     constructor() {
         this.restCalls = new RestCalls()
     }
+    
     public async addEmployee(newEmployee: Employee): Promise<AddEmployeeResult> {
         let result = new Result();
         let baseUrl = environment.baseUrl;
@@ -26,6 +27,50 @@ export class EmployeeBackendClient {
         if (restResult.error_code != 0) {
             result.error_code = 1;
             result.error_message = restResult.error_message;
+            return result;
+        }
+        else {
+            result.error_code = 0;
+            result.error_message = restResult.error_message;
+            return result;
+        }
+    }
+
+    public async getAllEmployees(): Promise<AddEmployeeResult> {
+        let result = new Result();
+        let baseUrl = environment.baseUrl;
+        let relativeUrl = "/courses";
+        let completeUrl = baseUrl + relativeUrl;
+        
+        let restResult = await this.restCalls.GET(completeUrl);
+        console.log(restResult);
+        
+        if (restResult.error_code != 0) {
+            result.error_code = 1;
+            result.error_message = restResult.error_message;
+            result.response=restResult;
+            return result;
+        }
+        else {
+            result.error_code = 0;
+            result.error_message = restResult.error_message;
+            return result;
+        }
+    }
+
+    public async deleteEmployeeById(empId: String): Promise<AddEmployeeResult> {
+        let result = new Result();
+        let baseUrl = environment.baseUrl;
+        let relativeUrl = "/course/delete/"+empId;
+        let completeUrl = baseUrl + relativeUrl;
+        
+        let restResult = await this.restCalls.DELETE(completeUrl, empId);
+        console.log(restResult);
+        
+        if (restResult.error_code != 0) {
+            result.error_code = 1;
+            result.error_message = restResult.error_message;
+            result.response=restResult;
             return result;
         }
         else {
