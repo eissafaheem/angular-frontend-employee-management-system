@@ -10,7 +10,12 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { RouterModule } from '@angular/router';
 import { AboutComponent } from './Components/about/about.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { EmployeeManagementService } from './Services/employee-management.service';
+import { EmployeeBackendClient } from './Rest/BackendClient/EmployeeBackendClient';
+import { RestCalls } from './Rest/RestOperations/RestCalls';
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ToasterService } from './Services/toaster.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,9 +28,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [],
+  providers: [EmployeeBackendClient, EmployeeManagementService,ToasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,17 +11,17 @@ import { Gender } from 'src/app/Models/Enums/EnumGender';
 })
 export class EmployeeListComponent implements OnInit {
 
-  employees:Employee[] = []
-  constructor() { 
-    for(let i=0;i<20;i++){
-      this.employees.push(new Employee("334","Eissa Faheem","e@h.com",Gender.Male,"53454543",46200,Designation.SeniorManager,Department.Engineering));
+  employees: Employee[] = []
+  constructor() {
+    for (let i = 0; i < 20; i++) {
+      this.employees.push(new Employee("334", "Eissa Faheem", "e@h.com", Gender.Male, "53454543", 46200, Designation.SeniorManager, Department.Engineering));
     }
   }
 
   ngOnInit(): void {
   }
 
-  getStringifiedEmp(emp:Employee){
+  getStringifiedEmp(emp: Employee) {
     return JSON.stringify(emp);
   }
 

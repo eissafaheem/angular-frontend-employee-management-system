@@ -1,201 +1,29 @@
 import { Subject } from 'rxjs';
 import { Result } from 'src/app/Models/Classes/Result';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 export class RestCalls {
-    public progressSubject = new Subject<any>();
 
-    POST(
-        url: string,
-        body: any = null,
-        stringifyBody: boolean = true,
-        headers: any = null,
-        IsAsync: boolean = true
-    ): Promise<Result> {
-        let result = new Result();
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', url, IsAsync);
-        //assigning headers
-        if (headers != null) {
-            for (let key in headers) {
-                xhr.setRequestHeader(key, headers[key]);
-            }
-        }
-        xhr.onprogress = (event) => {
-            this.progressSubject.next(event);
-        };
-        if (body != null) {
-            if (stringifyBody == true) {
-                xhr.send(JSON.stringify(body));
-            } else {
-                xhr.send(body);
-            }
-        } else {
-            xhr.send();
-        }
-        return new Promise((resolve) => {
-            //if failure to connect to network(network error)
-            xhr.onerror = function (err) {
-                result.error_code = 404;
-                result.error_message = "network error";
-                resolve(result);
-            };
-            //on receiving response
-            xhr.onload = function () {
-                result.error_code = xhr.status;
-                result.error_message = xhr.statusText;
-                if (xhr.status != 200) {
-                    result.response = null;
-                } else {
-                    result.response = xhr.response;
-                }
-                resolve(result);
-            };
-        });
-    }
+  POST(url: string, data: any): Promise<any> {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    const promise = new Promise((resolve, reject) => {
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            console.log("Eiisa " + xhr.responseText);
 
-    PUT(
-        url: string,
-        body: any = null,
-        stringifyBody: boolean = true,
-        headers: any = null,
-        IsAsync: boolean = true
-    ): Promise<Result> {
-        let result = new Result();
-        let xhr = new XMLHttpRequest();
-        xhr.open('PUT', url, IsAsync);
-        //assigning headers
-        if (headers != null) {
-            for (let key in headers) {
-                xhr.setRequestHeader(key, headers[key]);
-            }
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            reject(xhr.statusText);
+          }
         }
-        xhr.onprogress = (event) => {
-            this.progressSubject.next(event);
-        };
-        if (body != null) {
-            if (stringifyBody == true) {
-                xhr.send(JSON.stringify(body));
-            } else {
-                xhr.send(body);
-            }
-        } else {
-            xhr.send();
-        }
-        return new Promise((resolve) => {
-            //if failure to connect to network(network error)
-            xhr.onerror = () => {
-                result.error_code = 404;
-                result.error_message = "network error";
-                resolve(result);
-            };
-            //on receiving response
-            xhr.onload = function () {
-                result.error_code = xhr.status;
-                result.error_message = xhr.statusText;
-                if (xhr.status != 200) {
-                    result.response = null;
-                } else {
-                    result.response = xhr.response;
-                }
-                resolve(result);
-            };
-        });
-    }
-
-    GET(
-        url: string,
-        body: any = null,
-        stringifyBody: boolean = true,
-        headers: any = null,
-        IsAsync: boolean = true
-    ): Promise<Result> {
-        let result = new Result();
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', url, IsAsync);
-        //assigning headers
-        if (headers != null) {
-            for (let key in headers) {
-                xhr.setRequestHeader(key, headers[key]);
-            }
-        }
-        xhr.onprogress = (event) => {
-            this.progressSubject.next(event);
-        };
-        if (body != null) {
-            if (stringifyBody == true) {
-                xhr.send(JSON.stringify(body));
-            } else {
-                xhr.send(body);
-            }
-        } else {
-            xhr.send();
-        }
-        return new Promise((resolve) => {
-            //if failure to connect to network(network error)
-            xhr.onerror = () => {
-                result.error_code = 404;
-                result.error_message = 'Not Found';
-                resolve(result);
-            };
-            //on receiving response
-            xhr.onload = function () {
-                result.error_code = xhr.status;
-                result.error_message = xhr.statusText;
-                if (xhr.status != 200) {
-                    result.response = null;
-                } else {
-                    result.response = xhr.response;
-                }
-                resolve(result);
-            };
-        });
-    }
-
-    DELETE(
-        url: string,
-        body: any = null,
-        stringifyBody: boolean = true,
-        headers: any = null,
-        IsAsync: boolean = true
-    ): Promise<Result> {
-        let result = new Result();
-        let xhr = new XMLHttpRequest();
-        xhr.open('DELETE', url, IsAsync);
-        //assigning headers
-        if (headers != null) {
-            for (let key in headers) {
-                xhr.setRequestHeader(key, headers[key]);
-            }
-        }
-        xhr.onprogress = (event) => {
-            this.progressSubject.next(event);
-        };
-        if (body != null) {
-            if (stringifyBody == true) {
-                xhr.send(JSON.stringify(body));
-            } else {
-                xhr.send(body);
-            }
-        } else {
-            xhr.send();
-        }
-        return new Promise((resolve) => {
-            //if failure to connect to network(network error)
-            xhr.onerror = () => {
-                result.error_code = 404;
-                result.error_message = 'Not Found';
-                resolve(result);
-            };
-            //on receiving response
-            xhr.onload = function () {
-                result.error_code = xhr.status;
-                result.error_message = xhr.statusText;
-                if (xhr.status != 200) {
-                    result.response = null;
-                } else {
-                    result.response = xhr.response;
-                }
-                resolve(result);
-            };
-        });
-    }
+      };
+      xhr.onerror = () => reject(xhr.statusText);
+    });
+    xhr.send(JSON.stringify(data));
+    return promise;
+  }
 }

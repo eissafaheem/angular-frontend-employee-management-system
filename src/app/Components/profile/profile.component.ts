@@ -8,12 +8,12 @@ import { Employee } from 'src/app/Models/Classes/Employee';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  
-  emp:any;
+
+  emp: any;
   constructor(private route: ActivatedRoute) {
     let empString = this.route.snapshot.paramMap.get('emp');
 
-    if(empString!=null){
+    if (empString != null) {
       this.emp = JSON.parse(empString);
     }
   }

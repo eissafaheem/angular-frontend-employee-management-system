@@ -4,7 +4,7 @@
     <table class="table table-warning table-striped ">
       <thead>
         <tr>
-          <th scope="col" >Id</th>
+          <th scope="col">Id</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col" class="text-center">Actions</th>
@@ -15,7 +15,7 @@
           <th scope="row">{{emp.id}}</th>
           <td>{{emp.name}}</td>
           <td>{{emp.email}}</td>
-          <td class="text-center" >
+          <td class="text-center">
             <a class="btn btn-primary mr-3" [routerLink]="['/profile', getStringifiedEmp(emp) ]">View</a>
             <a class="btn btn-danger">Delete</a>
           </td>

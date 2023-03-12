@@ -6,29 +6,31 @@ import { RestCalls } from "../RestOperations/RestCalls";
 
 export class EmployeeBackendClient {
 
-    restCalls:RestCalls = new RestCalls();
-
-    public async addEmployee(newEmployee:Employee):Promise<AddEmployeeResult>{
+    restCalls: RestCalls;
+    constructor() {
+        this.restCalls = new RestCalls()
+    }
+    public async addEmployee(newEmployee: Employee): Promise<AddEmployeeResult> {
         let result = new Result();
         let baseUrl = environment.baseUrl;
-        let relativeUrl = "/";
-        let completeUrl = baseUrl+relativeUrl;
+        let relativeUrl = "/course";
+        let completeUrl = baseUrl + relativeUrl;
+
         let body = {
-            newEmployee:newEmployee
+            id: Number(newEmployee.id),
+            cname: newEmployee.name
         }
-        let headers = {
 
-        }
-        let restResult = await this.restCalls.POST(completeUrl,body,false,headers,false);
+        let restResult = await this.restCalls.POST(completeUrl, body);
 
-        if(restResult.error_code!=0){
-            result.error_code=1;
-            result.error_message=restResult.error_message;
+        if (restResult.error_code != 0) {
+            result.error_code = 1;
+            result.error_message = restResult.error_message;
             return result;
         }
-        else{
-            result.error_code=0;
-            result.error_message=restResult.error_message;
+        else {
+            result.error_code = 0;
+            result.error_message = restResult.error_message;
             return result;
         }
     }
