@@ -7,6 +7,8 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { EmployeeListComponent } from './Components/employee-list/employee-list.component';
 import { AddEmployeeComponent } from './Components/add-employee/add-employee.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { RouterModule } from '@angular/router';
+import { AboutComponent } from './Components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,12 @@ import { ProfileComponent } from './Components/profile/profile.component';
     NavbarComponent,
     EmployeeListComponent,
     AddEmployeeComponent,
-    ProfileComponent
+    ProfileComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
