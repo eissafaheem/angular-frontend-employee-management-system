@@ -8,11 +8,24 @@ export class Employee {
     email: string;
     phone: string;
     gender: Gender;
-    salary: number
+    salary: number;
     designation: Designation;
     department: Department;
+    address : string 
 
-    constructor(id: string, name: string, email: string, gender: Gender, phone: string, salary:number, designation: Designation, department: Department) {
+    constructor() {
+        this.id = "";
+        this.name = "";
+        this.email = "";
+        this.phone = "";
+        this.gender = Gender.Not_Specified;
+        this.salary = -1;
+        this.designation = Designation.Not_Specified;
+        this.department = Department.Not_Specified;
+        this.address = "";
+    }
+
+    setEmployeeValues(id: string, name: string, email: string, gender: Gender, phone: string, salary: number, designation: Designation, department: Department, address: string ){
         this.id = id;
         this.name = name;
         this.email = email;
@@ -21,5 +34,6 @@ export class Employee {
         this.salary = salary;
         this.designation = designation;
         this.department = department;
+        this.address = address;
     }
 }

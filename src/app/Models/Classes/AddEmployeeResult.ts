@@ -1,7 +1,13 @@
+import { Designation } from "../Enums/EnumDesignation";
+import { Gender } from "../Enums/EnumGender";
+import { Employee } from "./Employee";
 import { Result } from "./Result";
 
 export class AddEmployeeResult extends Result{
-    constructor(error_code:number, error_message:string,response:any){
+    
+    response: Employee;
+    constructor(){
         super();
+        this.response = new Employee();
     }
 }

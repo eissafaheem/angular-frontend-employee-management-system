@@ -18,9 +18,11 @@ export class EmployeeListComponent implements OnInit {
     private employeeManagementService: EmployeeManagementService,
     private toasterService: ToasterService
     ) {
-    // for (let i = 0; i < 20; i++) {
-    //   this.employees.push(new Employee("334", "Eissa Faheem", "e@h.com", Gender.Male, "53454543", 46200, Designation.SeniorManager, Department.Engineering));
-    // }
+    for (let i = 0; i < 20; i++) {
+      let emp = new Employee();
+      emp.setEmployeeValues("334", "Eissa Faheem", "e@h.com", Gender.Male, "53454543", 46200, Designation.SeniorManager, Department.Engineering, "Lucknow");
+      this.employees.push(emp);
+    }
   }
 
   ngOnInit(): void {

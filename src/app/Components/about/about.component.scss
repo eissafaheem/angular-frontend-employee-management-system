@@ -1,0 +1,8 @@
+.container {
+    overflow-y: hidden;
+    width: 40rem;
+    align-content: space-evenly;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    padding: 10px;
+}

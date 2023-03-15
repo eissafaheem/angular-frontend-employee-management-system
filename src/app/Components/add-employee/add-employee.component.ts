@@ -37,7 +37,8 @@ export class AddEmployeeComponent {
 
   onSubmit() {
     const formValue = this.myForm.value;
-    let newEmployee = new Employee(formValue.id, formValue.name, formValue.email, formValue.gender, formValue.phone, formValue.salary, formValue.designation, formValue.department)
+    let newEmployee = new Employee()
+    newEmployee.setEmployeeValues(formValue.id, formValue.name, formValue.email, formValue.gender, formValue.phone, formValue.salary, formValue.designation, formValue.department,formValue.address);
     this.toasterService.info("Info", "Adding employee please wait...");
     let addEmployeeResult = this.employeeManagementService.addEmployee(newEmployee);
     addEmployeeResult.subscribe((res: any) => {

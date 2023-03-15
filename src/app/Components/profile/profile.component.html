@@ -1,6 +1,6 @@
 <div class="all_container">
     <h1>{{emp.name}}'s Profile</h1>
-    <div class="container">
+    <div class="container text-center" *ngIf="!isProfileEditable">
         <table class="table table-info table-striped">
             <thead>
                 <tr>
@@ -41,8 +41,82 @@
                     <td>Department</td>
                     <td>{{emp.department}}</td>
                 </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>{{emp.address}}</td>
+                </tr>
             </tbody>
         </table>
+        <button class="btn btn-primary " (click)="editProfileHandler()">Edit Profile</button>
     </div>
 
+    <form [formGroup]="myForm" *ngIf="isProfileEditable" class="container text-center">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Id</label>
+            <input type="text" class="form-control" id="" placeholder="Id" formControlName="id">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Name</label>
+            <input type="text" class="form-control" id="" placeholder="Name" formControlName="name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Email</label>
+            <input type="email" class="form-control" id="" placeholder="Email" formControlName="email">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Phone</label>
+            <input type="text" class="form-control" id="" placeholder="Phone" formControlName="phone">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Salary</label>
+            <input type="number" class="form-control" id="" placeholder="Salary" formControlName="salary">
+          </div>
+          <div class="form-group col-md-6">
+            <div class="form-group">
+              <label for="">Gender</label>
+              <select id="" class="form-control" formControlName="gender">
+                <option value="">Select</option>
+                <option *ngFor="let gender of genders | keyvalue" [value]="gender.value">
+                  {{ gender.value}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <div class="form-group">
+              <label for="inputState">Designation</label>
+              <select id="inputState" class="form-control" formControlName="designation">
+                <option value="">Select</option>
+                <option *ngFor="let designation of designations | keyvalue" [value]="designation.value">
+                  {{ designation.value}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <div class="form-group">
+              <label for="inputState">Department</label>
+              <select id="inputState" class="form-control" formControlName="department">
+                <option value="">Select</option>
+                <option *ngFor="let department of departments | keyvalue" [value]="department.value">
+                  {{ department.value}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="Address here" formControlName="address">
+        </div>
+        <button class="btn btn-primary" (click)="updateProfileHandler()">Update Profile</button>
+    </form>
+    
 </div>
