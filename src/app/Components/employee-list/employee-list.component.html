@@ -1,6 +1,20 @@
 <div class="all_container">
   <h1>All Employees</h1>
-  <div class="container">
+  <div *ngIf="isLoading" class="screen_message">
+    <img src="./assets/gifs/Walk.gif" alt="">
+    <div>Loading employees...</div>
+  </div>
+  <a routerLink="/add-employee">
+    <div *ngIf="employees.length==0 && !isLoading && !isError" class="screen_message">
+      <img src="./assets/png/employees.png" alt="">
+      <div>Please add to view employees</div>
+    </div>
+  </a>
+  <div *ngIf="isError" class="screen_message">
+    <img src="./assets/png/error.png" alt="">
+    <div>Something went wrong !</div>
+  </div>
+  <div class="container" *ngIf="employees.length!=0">
     <table class="table table-warning table-striped ">
       <thead>
         <tr>

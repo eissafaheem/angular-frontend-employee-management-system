@@ -14,27 +14,30 @@ import { ToasterService } from 'src/app/Services/toaster.service';
 export class EmployeeListComponent implements OnInit {
 
   employees: Employee[] = []
+  isLoading=false;
+  isError=false;
   constructor(
     private employeeManagementService: EmployeeManagementService,
     private toasterService: ToasterService
     ) {
-    for (let i = 0; i < 20; i++) {
-      let emp = new Employee();
-      emp.setEmployeeValues("334", "Eissa Faheem", "e@h.com", Gender.Male, "53454543", 46200, Designation.SeniorManager, Department.Engineering, "Lucknow");
-      this.employees.push(emp);
-    }
+    // for (let i = 0; i < 20; i++) {
+    //   let emp = new Employee();
+    //   emp.setEmployeeValues("334", "Eissa Faheem", "e@h.com", Gender.Male, "53454543", 46200, Designation.SeniorManager, Department.Engineering, "Lucknow");
+    //   this.employees.push(emp);
+    // }
   }
 
   ngOnInit(): void {
-    this.toasterService.info("Info","Loading employee list...")
+    this.isLoading=true;
     let getEmployeeResult = this.employeeManagementService.getAllEmployees();
     getEmployeeResult.subscribe((res:any)=>{
       console.log(res);
       this.employees=res.response;
-      this.toasterService.success("Success","Employees loaded successfully !")
+      this.isLoading=false;
       
     },(err:any)=>{
-      this.toasterService.error("Error","Employee list loaded failed !")
+      this.isLoading=false;
+      this.isError=true;
       console.log(err);
     })
   }

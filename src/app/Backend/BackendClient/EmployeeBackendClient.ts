@@ -17,26 +17,22 @@ export class EmployeeBackendClient {
     public async addEmployee(newEmployee: Employee): Promise<AddEmployeeResult> {
         let addEmployeeResult = new AddEmployeeResult();
         let baseUrl = environment.baseUrl;
-        let relativeUrl = "/course";
+        let relativeUrl = "/employee";
         let completeUrl = baseUrl + relativeUrl;
 
-        let body = {
-            id: Number(newEmployee.id),
-            cname: newEmployee.name
-        }
+        let body = newEmployee;
 
         let restResult = await this.restCalls.PUT(completeUrl, body);
 
-        if (restResult.error_code != 0) {
-            addEmployeeResult.error_code = 1;
-            addEmployeeResult.error_message = restResult.error_message;
-            addEmployeeResult.response=restResult
+        if (restResult.errorCode != 0) {
+            addEmployeeResult.errorCode = 1;
+            addEmployeeResult.errorMessage = restResult.errorMessage;
             return addEmployeeResult;
         }
         else {
-            addEmployeeResult.error_code = 0;
-            addEmployeeResult.error_message = restResult.error_message;
-            addEmployeeResult.response=restResult
+            addEmployeeResult.errorCode = 0;
+            addEmployeeResult.errorMessage = restResult.errorMessage;
+            addEmployeeResult.response=restResult.response
             return addEmployeeResult;
         }
     }
@@ -44,22 +40,21 @@ export class EmployeeBackendClient {
     public async getAllEmployees(): Promise<AllEmployeeResult> {
         let allEmployeeResult = new AllEmployeeResult();
         let baseUrl = environment.baseUrl;
-        let relativeUrl = "/courses";
+        let relativeUrl = "/all/employee";
         let completeUrl = baseUrl + relativeUrl;
         
         let restResult = await this.restCalls.GET(completeUrl);
         console.log(restResult);
         
-        if (restResult.error_code != 0) {
-            allEmployeeResult.error_code = 1;
-            allEmployeeResult.error_message = restResult.error_message;
-            allEmployeeResult.response=restResult;
+        if (restResult.errorCode != 0) {
+            allEmployeeResult.errorCode = 1;
+            allEmployeeResult.errorMessage = restResult.errorMessage;
             return allEmployeeResult;
         }
         else {
-            allEmployeeResult.error_code = 0;
-            allEmployeeResult.error_message = restResult.error_message;
-            allEmployeeResult.response=restResult;
+            allEmployeeResult.errorCode = 0;
+            allEmployeeResult.errorMessage = restResult.errorMessage;
+            allEmployeeResult.response=restResult.response;
             return allEmployeeResult;
         }
     }
@@ -67,22 +62,22 @@ export class EmployeeBackendClient {
     public async deleteEmployeeById(empId: String): Promise<DeleteEmployeeResult> {
         let deleteEmployeeResult = new DeleteEmployeeResult();
         let baseUrl = environment.baseUrl;
-        let relativeUrl = "/course/delete/"+empId;
+        let relativeUrl = "/employee/"+empId;
         let completeUrl = baseUrl + relativeUrl;
-        
-        let restResult = await this.restCalls.DELETE(completeUrl, empId);
+        let body = "";
+        let restResult = await this.restCalls.DELETE(completeUrl, body);
         console.log(restResult);
         
-        if (restResult.error_code != 0) {
-            deleteEmployeeResult.error_code = 1;
-            deleteEmployeeResult.error_message = restResult.error_message;
+        if (restResult.errorCode != 0) {
+            deleteEmployeeResult.errorCode = 1;
+            deleteEmployeeResult.errorMessage = restResult.error_message;
             deleteEmployeeResult.response=restResult;
             return deleteEmployeeResult;
         }
         else {
-            deleteEmployeeResult.error_code = 0;
-            deleteEmployeeResult.error_message = restResult.error_message;
-            deleteEmployeeResult.response=restResult;
+            deleteEmployeeResult.errorCode = 0;
+            deleteEmployeeResult.errorMessage = restResult.errorMessage;
+            deleteEmployeeResult.response=restResult.response;
             return deleteEmployeeResult;
         }
     }
@@ -90,22 +85,21 @@ export class EmployeeBackendClient {
     public async updateEmployee(updateEmployeeRequest: Employee): Promise<UpdateEmployeeResult> {
         let updateEmployeeResult = new UpdateEmployeeResult();
         let baseUrl = environment.baseUrl;
-        let relativeUrl = "/course/update"+updateEmployeeRequest.id;
+        let relativeUrl = "/employee";
         let completeUrl = baseUrl + relativeUrl;
-        
-        let restResult = await this.restCalls.POST(completeUrl, updateEmployeeRequest);
+        let body = updateEmployeeRequest;
+        let restResult = await this.restCalls.POST(completeUrl, body);
         console.log(restResult);
         
-        if (restResult.error_code != 0) {
-            updateEmployeeResult.error_code = 1;
-            updateEmployeeResult.error_message = restResult.error_message;
-            updateEmployeeResult.response=restResult;
+        if (restResult.errorCode != 0) {
+            updateEmployeeResult.errorCode = 1;
+            updateEmployeeResult.errorMessage = restResult.errorMessage;
             return updateEmployeeResult;
         }
         else {
-            updateEmployeeResult.error_code = 0;
-            updateEmployeeResult.error_message = restResult.error_message;
-            updateEmployeeResult.response=restResult;
+            updateEmployeeResult.errorCode = 0;
+            updateEmployeeResult.errorMessage = restResult.errorMessage;
+            updateEmployeeResult.response=restResult.response;
             return updateEmployeeResult;
         }
     }

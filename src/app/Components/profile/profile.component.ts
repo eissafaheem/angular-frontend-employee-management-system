@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Employee } from 'src/app/Models/Classes/Employee';
 import { Department } from 'src/app/Models/Enums/EnumDepartment';
 import { Designation } from 'src/app/Models/Enums/EnumDesignation';
 import { Gender } from 'src/app/Models/Enums/EnumGender';
 import { EmployeeManagementService } from 'src/app/Services/employee-management.service';
+import { ToasterService } from 'src/app/Services/toaster.service';
 
 @Component({
   selector: 'app-profile',
@@ -24,6 +25,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private employeeManagementService: EmployeeManagementService,
+    private toasterService: ToasterService
     ) {
     let empString = this.route.snapshot.paramMap.get('emp');
     if (empString != null) {
@@ -33,9 +35,9 @@ export class ProfileComponent implements OnInit {
     }
 
     this.myForm = new FormGroup({
-      id: new FormControl(this.emp.id),
-      name: new FormControl(this.emp.name),
-      email: new FormControl(this.emp.email),
+      id: new FormControl(this.emp.id, Validators.required),
+      name: new FormControl(this.emp.name,Validators.required),
+      email: new FormControl(this.emp.email,Validators.required),
       phone: new FormControl(this.emp.phone),
       salary: new FormControl(this.emp.salary),
       gender: new FormControl(this.emp.gender),
@@ -53,6 +55,7 @@ export class ProfileComponent implements OnInit {
 
   updateProfileHandler(){
     console.log(this.myForm);
+    this.toasterService.info("Info","Updating profile..")
     let updateEmployeeRequest = new Employee();
     
     updateEmployeeRequest.setEmployeeValues(
@@ -60,14 +63,26 @@ export class ProfileComponent implements OnInit {
       this.myForm.controls.name.value,
       this.myForm.controls.email.value,
       this.myForm.controls.gender.value,
-      this.myForm.controls.departments.value,
       this.myForm.controls.phone.value,
       this.myForm.controls.salary.value,
       this.myForm.controls.designation.value,
-      this.myForm.controls.department.value
+      this.myForm.controls.department.value,
+      this.myForm.controls.address.value
     );
     
-    this.employeeManagementService.updateEmployee(updateEmployeeRequest);
+    let updateEmployeeResult = this.employeeManagementService.updateEmployee(updateEmployeeRequest);
+      updateEmployeeResult.subscribe((res:any)=>{
+        this.toasterService.success("Success","Employee updated successfully!");
+        this.emp=updateEmployeeRequest;
+        this.isProfileEditable=false;
+      },(err:any)=>{
+        this.toasterService.error("Error","Error in updating");
+        this.isProfileEditable=false;
+      })
+  }
+
+  backButtonHandler(){
+    this.isProfileEditable = !this.isProfileEditable;
   }
 
 }

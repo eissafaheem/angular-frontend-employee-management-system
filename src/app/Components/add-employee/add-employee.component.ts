@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Employee } from 'src/app/Models/Classes/Employee';
 import { Department } from 'src/app/Models/Enums/EnumDepartment';
 import { Designation } from 'src/app/Models/Enums/EnumDesignation';
@@ -16,11 +16,12 @@ export class AddEmployeeComponent {
   genders = Gender;
   designations = Designation;
   departments = Department;
+  isFormSubmittedOnce=false;
 
   myForm: FormGroup = new FormGroup({
-    id: new FormControl(''),
-    name: new FormControl(''),
-    email: new FormControl(''),
+    id: new FormControl('', Validators.required),
+    name: new FormControl('',Validators.required),
+    email: new FormControl('',Validators.required),
     phone: new FormControl(''),
     salary: new FormControl(''),
     gender: new FormControl(''),
@@ -43,6 +44,8 @@ export class AddEmployeeComponent {
     let addEmployeeResult = this.employeeManagementService.addEmployee(newEmployee);
     addEmployeeResult.subscribe((res: any) => {
       this.toasterService.success("Success", "Employee added successfully!");
+      this.myForm.reset();
+      this.isFormSubmittedOnce=true;
     }, (err: any) => {
       this.toasterService.error("Failure", "Adding employee failed !");
     })
