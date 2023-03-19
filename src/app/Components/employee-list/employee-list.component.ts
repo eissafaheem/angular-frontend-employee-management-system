@@ -31,14 +31,12 @@ export class EmployeeListComponent implements OnInit {
     this.isLoading=true;
     let getEmployeeResult = this.employeeManagementService.getAllEmployees();
     getEmployeeResult.subscribe((res:any)=>{
-      console.log(res);
       this.employees=res.response;
       this.isLoading=false;
       
     },(err:any)=>{
       this.isLoading=false;
       this.isError=true;
-      console.log(err);
     })
   }
 
@@ -57,7 +55,7 @@ export class EmployeeListComponent implements OnInit {
         }
       }
     },(err:any)=>{
-      this.toasterService.error("Error","Employee deletion failed !")
+      this.toasterService.error("Error",err.errorMessage)
     })
   }
 

@@ -47,7 +47,7 @@ export class AddEmployeeComponent {
       this.myForm.reset();
       this.isFormSubmittedOnce=true;
     }, (err: any) => {
-      this.toasterService.error("Failure", "Adding employee failed !");
+      this.toasterService.error("Failure", err.errorMessage);
     })
   }
 }

@@ -54,7 +54,6 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfileHandler(){
-    console.log(this.myForm);
     this.toasterService.info("Info","Updating profile..")
     let updateEmployeeRequest = new Employee();
     
@@ -76,7 +75,7 @@ export class ProfileComponent implements OnInit {
         this.emp=updateEmployeeRequest;
         this.isProfileEditable=false;
       },(err:any)=>{
-        this.toasterService.error("Error","Error in updating");
+        this.toasterService.error("Error",err.errorMessage);
         this.isProfileEditable=false;
       })
   }
