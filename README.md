@@ -1,6 +1,6 @@
 # EmployeeManagementSystem
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
+This project uses the rest api from https://github.com/eissafaheem/springboot_hibernate_backend_employee_management_system
 
 Fetch all employees
 ![1 loading](https://user-images.githubusercontent.com/68000460/227085218-551556cd-0986-4acf-a3be-3f9dc90b48f2.png)
