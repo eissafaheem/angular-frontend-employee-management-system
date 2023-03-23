@@ -2,7 +2,18 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
 
-## Development server
+![1 loading](https://user-images.githubusercontent.com/68000460/227085218-551556cd-0986-4acf-a3be-3f9dc90b48f2.png)
+![2 add to view](https://user-images.githubusercontent.com/68000460/227085135-9456e619-90bb-4103-84e1-f02052b1347f.png)
+![4 all employees](https://user-images.githubusercontent.com/68000460/227085172-18a2aa9c-b7f7-4aa6-b19d-0ac84c0a614e.png)
+![5 view emp](https://user-images.githubusercontent.com/68000460/227085186-abb1168b-9a18-4257-b1d8-0be74554cd0f.png)
+![6 edit emp](https://user-images.githubusercontent.com/68000460/227085197-1fcd98b1-5305-4ec6-8b50-95e3ba4bd0af.png)
+![7 edit success](https://user-images.githubusercontent.com/68000460/227085202-aeeb59d6-d507-4570-b187-c582ae29cc3f.png)
+![8 delete emp](https://user-images.githubusercontent.com/68000460/227085211-d2cca2d1-d00c-4baf-8085-acdc374dd2b9.png)
+![9 about4](https://user-images.githubusercontent.com/68000460/227085213-e9be35ff-f7aa-496b-aa9c-174fa0466eb7.png)
+
+
+## Developme![3 add emp](https://user-images.githubusercontent.com/68000460/227085151-29abd716-711a-4c26-98a5-2e56e03370a2.png)
+nt server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
