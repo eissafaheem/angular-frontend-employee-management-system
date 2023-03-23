@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    // background-color: rgba(128, 128, 128, 0.116);
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.all_container{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    h1{
+        margin-bottom: 2rem;
+    }
+}
+
+.container{
+    overflow-y: auto;
+    height: 34rem;
+}
+
+.screen_message{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    margin-top: 10rem;
+    flex-direction: column;
+    img{
+        margin-bottom: 1.5rem;
+        height: 5rem;
+    }
+}
+

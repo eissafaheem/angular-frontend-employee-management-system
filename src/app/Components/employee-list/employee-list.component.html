@@ -1,0 +1,43 @@
+<div class="all_container">
+  <h1>All Employees</h1>
+  <div *ngIf="isLoading" class="screen_message">
+    <img src="./assets/gifs/Walk.gif" alt="">
+    <div>Loading employees...</div>
+  </div>
+  <a routerLink="/add-employee">
+    <div *ngIf="employees.length==0 && !isLoading && !isError" class="screen_message">
+      <img src="./assets/png/employees.png" alt="">
+      <div>Please add to view employees</div>
+    </div>
+  </a>
+  <div *ngIf="isError" class="screen_message">
+    <img src="./assets/png/error.png" alt="">
+    <div>Something went wrong !</div>
+  </div>
+  <div class="container" *ngIf="employees.length!=0">
+    <table class="table table-warning table-striped ">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col" class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let emp of employees">
+        <tr>
+          <th scope="row">{{emp.id}}</th>
+          <td>{{emp.name}}</td>
+          <td>{{emp.email}}</td>
+          <td class="text-center">
+            <a class="btn btn-primary mr-3" [routerLink]="['/profile', getStringifiedEmp(emp) ]">View</a>
+            <a class="btn btn-danger" (click)="deleteEmployeeHandler(emp.id)">Delete</a>
+          </td>
+          <!-- <td class="text-center">
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
